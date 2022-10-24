@@ -5,6 +5,7 @@ using TMPro;
 
 public class Creature : MonoBehaviour
 {
+    [Header("Creature Attributes")]
     [SerializeField]
     private Weapon startingWeapon;
     [SerializeField]
@@ -32,8 +33,10 @@ public class Creature : MonoBehaviour
 
     public float moveSpeed = 5f;
 
-    private Weapon unarmedWeapon;    
-    private Armor nakedArmor;
+    [HideInInspector]
+    public Weapon unarmedWeapon;
+    [HideInInspector]
+    public Armor nakedArmor;
 
     private Animator creatureAnimator;
 

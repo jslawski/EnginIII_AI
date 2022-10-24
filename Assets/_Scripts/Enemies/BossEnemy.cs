@@ -5,8 +5,8 @@ public class BossEnemy : Enemy
 {
     private Type CanSeePlayerBehavior = typeof(ChaseBehavior);
     private Type CannotSeePlayerBehavior = typeof(IdleBehavior);
-    private Type CanGrabWeaponBehavior = typeof(GrabWeaponBehavior);
-    private Type CanAttackPlayerBehavior = typeof(BossAttackBehavior);
+    private Type CanGrabWeaponBehavior = typeof(BossGrabWeaponBehavior);
+    private Type CanAttackPlayerBehavior = typeof(AttackBehavior);
     
     protected override void UpdateBehavior()
     {        

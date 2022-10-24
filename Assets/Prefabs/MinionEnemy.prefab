@@ -187,14 +187,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 83057052475298700}
-  - component: {fileID: 3471181800042606172}
+  - component: {fileID: 8686490079406252450}
   - component: {fileID: 2147599954919052253}
   - component: {fileID: 1157926710790802844}
   - component: {fileID: 6726829358728935746}
   - component: {fileID: 7977503063897824108}
   - component: {fileID: 8020184670221473534}
   m_Layer: 7
-  m_Name: BossEnemy
+  m_Name: MinionEnemy
   m_TagString: Hittable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,7 +209,7 @@ Transform:
   m_GameObject: {fileID: 2472591989421187369}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4028528176880028151}
@@ -218,7 +218,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3471181800042606172
+--- !u!114 &8686490079406252450
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -227,28 +227,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 2472591989421187369}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a0965a8160a1f40a6bef6f7759c109, type: 3}
+  m_Script: {fileID: 11500000, guid: bfd12b7c1a3b92b48af1d2af68d04e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 11400000, guid: e557817cd89829b4cb82d27620e0b89f, type: 2}
+  startingWeapon: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
   startingArmor: {fileID: 11400000, guid: b3a384b4a11cad6428e3a5eb43955050, type: 2}
   equippedWeapon: {fileID: 0}
   equippedArmor: {fileID: 0}
-  totalHitPoints: 500
+  totalHitPoints: 100
   currentHitPoints: 100
-  attackZone: {fileID: 2480019744266275670}
-  moveSpeed: 2
+  attackZone: {fileID: 0}
+  moveSpeed: 8
+  unarmedWeapon: {fileID: 0}
+  nakedArmor: {fileID: 0}
   weaponPickupCandidate: {fileID: 0}
   lootChestCandidate: {fileID: 0}
   creatureRb: {fileID: 0}
   attackDuration: 0.5
   playerTarget: {fileID: 0}
-  visionDistance: 15
-  rotateSpeed: 3
+  visionDistance: 30
+  rotateSpeed: 5
   attackCooldown: 0
   attackAngle: 30
-  secondsBetweenAttacks: 2
+  secondsBetweenAttacks: 0.5
   currentBehaviorString: 
+  rangedAttackDistance: 8
+  carryingWeapon: {fileID: 0}
 --- !u!54 &2147599954919052253
 Rigidbody:
   m_ObjectHideFlags: 0

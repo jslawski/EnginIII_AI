@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GrabWeaponBehavior : EnemyBehavior
-{    
+public class MinionStealWeaponBehavior : EnemyBehavior
+{
     public override void ExecuteBehavior()
     {
-        this.enemy.PickUpWeapon();
+        
     }
 }

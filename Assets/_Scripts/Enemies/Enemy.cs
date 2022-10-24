@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Enemy : Creature
 {
-    public string currentBehaviorString;
-
+    
     [HideInInspector]
     public Creature playerTarget;
-    protected EnemyBehavior currentBehavior;    
-    protected float visionDistance = 15f;
 
+    [Header("Enemy Attributes")]
+    public float visionDistance = 15f;
     public float rotateSpeed = 3.0f;
+
+    [HideInInspector]
     public float attackCooldown = 0.0f;
 
     [HideInInspector]
     public Coroutine enemyAttackCoroutine = null;
+
+    protected EnemyBehavior currentBehavior;
+
+    public float attackAngle = 30.0f;
+    public float secondsBetweenAttacks = 2.0f;
+    
+    public string currentBehaviorString;
 
     protected override void Start()
     {
@@ -68,7 +76,30 @@ public class Enemy : Creature
         this.enemyAttackCoroutine = StartCoroutine(this.DepleteAttackCooldown());
     }
 
-    private IEnumerator DepleteAttackCooldown()
+    public void TurnTowardsPlayer()
+    {
+        Vector3 targetDirection = (this.playerTarget.creatureRb.position - this.creatureRb.position).normalized;
+        float targetZRotation = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg;
+
+        this.creatureRb.rotation = Quaternion.RotateTowards(this.creatureRb.rotation,
+                                   Quaternion.Euler(new Vector3(0.0f, 0.0f, targetZRotation)), this.rotateSpeed);
+    }
+
+    public bool PlayerIsInSight()
+    {
+        Vector3 directionOfPlayer = (this.playerTarget.creatureRb.position - this.creatureRb.position).normalized;
+
+        float angle = Vector3.Angle(this.gameObject.transform.right, directionOfPlayer);
+
+        if (angle <= this.attackAngle)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    protected IEnumerator DepleteAttackCooldown()
     {
         while (this.attackCooldown >= 0.0f)
         {
@@ -77,5 +108,5 @@ public class Enemy : Creature
         }
 
         this.enemyAttackCoroutine = null;
-    }
+    }    
 }
