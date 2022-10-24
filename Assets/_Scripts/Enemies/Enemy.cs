@@ -1,12 +1,21 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : Creature
 {
+    public string currentBehaviorString;
+
     [HideInInspector]
     public Creature playerTarget;
     protected EnemyBehavior currentBehavior;    
-    protected float visionDistance = 8f;
+    protected float visionDistance = 15f;
+
+    public float rotateSpeed = 3.0f;
+    public float attackCooldown = 0.0f;
+
+    [HideInInspector]
+    public Coroutine enemyAttackCoroutine = null;
 
     protected override void Start()
     {
@@ -19,8 +28,14 @@ public class Enemy : Creature
 
     private void FixedUpdate()
     {
+        //Enemy should be motionless while it is attacking
+        if (this.currentAttack != null)
+        {
+            return;
+        }
+
         this.UpdateBehavior();
-        this.currentBehavior.ExecuteBehavior();
+        this.currentBehavior.ExecuteBehavior();        
     }
 
     protected virtual void UpdateBehavior() { }
@@ -31,6 +46,7 @@ public class Enemy : Creature
         {
             this.currentBehavior = Activator.CreateInstance(newBehaviorType, this) as EnemyBehavior;
             this.currentBehavior.Setup(this);
+            this.currentBehaviorString = this.currentBehavior.GetType().ToString();
         }
     }
 
@@ -40,4 +56,26 @@ public class Enemy : Creature
     }
 
     protected virtual bool IsInRangeOfPlayer() { return false; }
+
+    public override void Attack()
+    {
+        if (this.enemyAttackCoroutine != null)
+        {
+            return;
+        }
+
+        base.Attack();
+        this.enemyAttackCoroutine = StartCoroutine(this.DepleteAttackCooldown());
+    }
+
+    private IEnumerator DepleteAttackCooldown()
+    {
+        while (this.attackCooldown >= 0.0f)
+        {
+            this.attackCooldown -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        this.enemyAttackCoroutine = null;
+    }
 }

@@ -48,8 +48,11 @@ public class Creature : MonoBehaviour
     [HideInInspector]
     public Rigidbody creatureRb;
 
-    public float attackDuration = 0.5f;
+    [HideInInspector]
+    public Coroutine currentAttack = null;
 
+    public float attackDuration = 0.5f;
+    
     protected virtual void Start()
     {
         this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
@@ -169,8 +172,7 @@ public class Creature : MonoBehaviour
             new Vector3(this.equippedWeapon.attackZoneDimensions.y,
             this.equippedWeapon.attackZoneDimensions.x, 1.0f);
 
-        float adjustedXPosition = (this.attackZone.gameObject.transform.localScale.x / 2.0f) + 
-            (this.gameObject.transform.localScale.x / 2.0f);
+        float adjustedXPosition = (this.attackZone.gameObject.transform.localScale.x / 2.0f) + 0.5f;
 
         Vector3 adjustedPosition = new Vector3(adjustedXPosition,
             this.attackZone.gameObject.transform.localPosition.y,
@@ -189,7 +191,12 @@ public class Creature : MonoBehaviour
 
     public virtual void Attack()
     {
-        StartCoroutine(this.AttackCoroutine());
+        if (this.currentAttack != null)
+        {
+            return;
+        }
+
+        this.currentAttack = StartCoroutine(this.AttackCoroutine());
         this.TriggerAttack();
     }
 
@@ -206,6 +213,7 @@ public class Creature : MonoBehaviour
         }
 
         this.attackZone.DisableAttack();
+        this.currentAttack = null;
     }
 
     public void TriggerEquip()
