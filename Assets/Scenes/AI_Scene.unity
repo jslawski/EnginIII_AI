@@ -178,14 +178,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 3471181800042606172, guid: d81997c8d7ab908449c18690d4b24fb8, type: 3}
-      propertyPath: startingWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
-    - target: {fileID: 6506785907203757464, guid: d81997c8d7ab908449c18690d4b24fb8, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81997c8d7ab908449c18690d4b24fb8, type: 3}
 --- !u!1 &705507993
@@ -366,8 +358,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -535,18 +527,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -589,22 +569,6 @@ PrefabInstance:
     - target: {fileID: 2890657395172797774, guid: 47da46762ac7f20439f397507319de7b, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 3947710006505148156, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6044717014275557405, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: startingWeapon
-      value: 
-      objectReference: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
-    - target: {fileID: 6401538956567892345, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_Constraints
-      value: 56
-      objectReference: {fileID: 0}
-    - target: {fileID: 6401538956567892345, guid: 47da46762ac7f20439f397507319de7b, type: 3}
-      propertyPath: m_IsKinematic
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7559151338443659652, guid: 47da46762ac7f20439f397507319de7b, type: 3}
       propertyPath: m_Camera

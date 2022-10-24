@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackCollider: {fileID: 0}
   attackRenderer: {fileID: 0}
+  attacking: 0
 --- !u!33 &3056320020856145410
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -248,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82f68914f78b42f46a35b5d1cf357970, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 11400000, guid: 6c9386be1e8e1b64da9651075f61a7b2, type: 2}
+  startingWeapon: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
   startingArmor: {fileID: 11400000, guid: 0af928a3227d6b745b0bafc58fa8e44b, type: 2}
   equippedWeapon: {fileID: 0}
   equippedArmor: {fileID: 0}
@@ -256,6 +257,10 @@ MonoBehaviour:
   currentHitPoints: 100
   attackZone: {fileID: 0}
   moveSpeed: 5
+  weaponPickupCandidate: {fileID: 0}
+  lootChestCandidate: {fileID: 0}
+  creatureRb: {fileID: 0}
+  attackDuration: 0.5
 --- !u!114 &1644294299
 MonoBehaviour:
   m_ObjectHideFlags: 0
