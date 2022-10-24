@@ -4,40 +4,25 @@ using UnityEngine;
 
 public class AttackState : PlayerState
 {
-    private float currentSwingTimeInSeconds = 0.0f;
-    private float swingTimeInSeconds = 0.5f;
-
     public override void Enter(PlayerController controller)
     {
         base.Enter(controller);
 
-        this.controller.creatureReference.attackZone.EnableAttack();
-        this.controller.creatureReference.TriggerAttack();
+        this.controller.creatureReference.Attack();        
     }
 
     public override void Exit()
     {
-        base.Exit();
-
-        this.controller.creatureReference.attackZone.DisableAttack();
+        base.Exit();        
     }
 
     public override void UpdateState()
     {
-        //Don't allow players to pick up weapons while they're attacking
-    }
-
-    public override void FixedUpdateState()
-    {
-        base.FixedUpdateState();
-
-        if (this.currentSwingTimeInSeconds < this.swingTimeInSeconds)
-        {
-            this.currentSwingTimeInSeconds += Time.fixedDeltaTime;
-        }
-        else
+        //Don't allow players to pick up weapons or move while they're attacking
+        //Transition to the idle state once the attack is completed
+        if (this.controller.creatureReference.attackZone.attacking == false)
         {
             this.controller.ChangeState(new IdleState());
         }
-    }
+    }    
 }

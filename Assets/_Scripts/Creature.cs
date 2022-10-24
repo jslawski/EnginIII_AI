@@ -48,6 +48,8 @@ public class Creature : MonoBehaviour
     [HideInInspector]
     public Rigidbody creatureRb;
 
+    public float attackDuration = 0.5f;
+
     protected virtual void Start()
     {
         this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
@@ -183,7 +185,28 @@ public class Creature : MonoBehaviour
         this.equippedArmor = newArmor;
         this.equippedArmor.Equip(this);
         this.TriggerEquip();
-    }    
+    }
+
+    public virtual void Attack()
+    {
+        StartCoroutine(this.AttackCoroutine());
+        this.TriggerAttack();
+    }
+
+    private IEnumerator AttackCoroutine()
+    {
+        float elapsedAttackTime = 0.0f;
+
+        this.attackZone.EnableAttack();
+
+        while (elapsedAttackTime < this.attackDuration)
+        {
+            elapsedAttackTime += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+
+        this.attackZone.DisableAttack();
+    }
 
     public void TriggerEquip()
     {

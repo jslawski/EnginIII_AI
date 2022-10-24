@@ -10,6 +10,8 @@ public class AttackZone : MonoBehaviour
     [HideInInspector]
     public MeshRenderer attackRenderer;
 
+    public bool attacking = false;
+
     public void Setup()
     {
         this.owningCreature = GetComponentInParent<Creature>();
@@ -21,12 +23,14 @@ public class AttackZone : MonoBehaviour
     {
         this.attackCollider.enabled = true;
         this.attackRenderer.enabled = true;
+        this.attacking = true;
     }
 
     public void DisableAttack()
     {
         this.attackCollider.enabled = false;
         this.attackRenderer.enabled = false;
+        this.attacking = false;
     }
 
     private void OnTriggerEnter(Collider other)

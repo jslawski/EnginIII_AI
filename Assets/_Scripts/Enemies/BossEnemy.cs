@@ -7,8 +7,9 @@ public class BossEnemy : Enemy
 {
     private Type CanSeePlayerBehavior = typeof(ChaseBehavior);
     private Type CannotSeePlayerBehavior = typeof(IdleBehavior);
-    private Type CanGrabWeaponBehavior = typeof(GrabWeaponBehavior);    
-
+    private Type CanGrabWeaponBehavior = typeof(GrabWeaponBehavior);
+    private Type CanAttackPlayerBehavior = typeof(BossAttackBehavior);
+    
     protected override void UpdateBehavior()
     {        
         if (this.weaponPickupCandidate != null)
@@ -19,12 +20,27 @@ public class BossEnemy : Enemy
         {
             if (this.CanSeePlayer()  == true)
             {
-                this.AttemptBehaviorChange(this.CanSeePlayerBehavior);
+                if (this.IsInRangeOfPlayer() == true)
+                {
+                    this.AttemptBehaviorChange(this.CanAttackPlayerBehavior);
+                }
+                else
+                {
+                    this.AttemptBehaviorChange(this.CanSeePlayerBehavior);
+                }
             }
             else
             {
                 this.AttemptBehaviorChange(this.CannotSeePlayerBehavior);
             }
         }
+    }
+
+    protected override bool IsInRangeOfPlayer()
+    {
+        float distanceToWeaponMidpoint = Vector3.Distance(this.creatureRb.position, this.attackZone.gameObject.transform.position);
+        float distanceToPlayer = Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position);
+
+        return (distanceToPlayer <= distanceToWeaponMidpoint);
     }
 }
