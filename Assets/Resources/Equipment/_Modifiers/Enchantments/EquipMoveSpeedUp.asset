@@ -15,3 +15,4 @@ MonoBehaviour:
   triggers: 00000000
   abilityDisplayName: Move Speed Up
   statusEffectName: PermanentSpeedUp
+  utilityScore: 1.5

@@ -15,3 +15,4 @@ MonoBehaviour:
   triggers: 02000000
   abilityDisplayName: Life Steal
   statusEffectName: OneOffLifeSteal
+  utilityScore: 2.5

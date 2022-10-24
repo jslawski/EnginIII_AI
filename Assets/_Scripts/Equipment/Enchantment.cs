@@ -10,4 +10,5 @@ public class Enchantment : ScriptableObject
     public EnchantmentTrigger[] triggers;
     public string abilityDisplayName;
     public string statusEffectName;
+    public float utilityScore;
 }

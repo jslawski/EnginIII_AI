@@ -15,3 +15,4 @@ MonoBehaviour:
   triggers: 00000000
   abilityDisplayName: Move Speed Down
   statusEffectName: PermanentSpeedDown
+  utilityScore: -0.5

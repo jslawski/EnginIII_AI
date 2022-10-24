@@ -15,3 +15,4 @@ MonoBehaviour:
   triggers: 01000000
   abilityDisplayName: Take Damage on Attack
   statusEffectName: OneOffDamage
+  utilityScore: 0.5

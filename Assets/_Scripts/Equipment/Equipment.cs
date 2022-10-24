@@ -171,5 +171,5 @@ public abstract class Equipment : ScriptableObject
             effect.SetupStatusEffect(this.owner, sourceCreature);
             effect.ApplyStatusEffect();
         }
-    }
+    }    
 }
