@@ -118,14 +118,14 @@ public class Creature : MonoBehaviour
     }
 
     public void Interact()
-    {
-        if (this.weaponPickupCandidate != null)
-        {
-            this.PickUpWeapon();
-        }
-        else if (this.lootChestCandidate != null)
+    {        
+        if (this.lootChestCandidate != null)
         {
             this.OpenLootChest();
+        }
+        else if (this.weaponPickupCandidate != null)
+        {
+            this.PickUpWeapon();
         }
     }
 
