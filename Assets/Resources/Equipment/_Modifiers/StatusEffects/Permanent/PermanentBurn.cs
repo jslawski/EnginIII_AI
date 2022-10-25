@@ -18,7 +18,7 @@ public class PermanentBurn : StatusEffect
     {
         while (true)
         {
-            this.nonOwnerTarget.TakeDamage(this.ownerTarget, this.fireDamage);
+            this.nonOwnerTarget.TakeDamage(this.ownerTarget, this.fireDamage, true);
             yield return new WaitForSeconds(this.delayBetweenBurnsInSeconds);
         }
     }

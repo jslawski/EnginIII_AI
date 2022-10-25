@@ -55,7 +55,11 @@ public class Creature : MonoBehaviour
     public Coroutine currentAttack = null;
 
     public float attackDuration = 0.5f;
-    
+
+    protected AudioSource creatureAudio;
+
+    protected AudioSource damageAudio;
+
     protected virtual void Start()
     {
         this.unarmedWeapon = Resources.Load<Weapon>("Equipment/Weapons/Unarmed");
@@ -71,6 +75,11 @@ public class Creature : MonoBehaviour
         this.hpText = GetComponentInChildren<TextMeshProUGUI>();
 
         this.creatureRb = GetComponent<Rigidbody>();
+
+        AudioSource[] allAudio = GetComponents<AudioSource>();
+
+        this.creatureAudio = allAudio[0];
+        this.damageAudio = allAudio[1];
 
         if (this.startingWeapon != null)
         {
@@ -183,6 +192,12 @@ public class Creature : MonoBehaviour
 
         this.SetupAttackZone();
 
+        if (this.equippedWeapon != this.unarmedWeapon)
+        {
+            this.creatureAudio.clip = Resources.Load<AudioClip>("Audio/Equip");
+            this.creatureAudio.Play();
+        }
+
         this.TriggerEquip();
     }
 
@@ -215,6 +230,9 @@ public class Creature : MonoBehaviour
         {
             return;
         }
+
+        this.creatureAudio.clip = Resources.Load<AudioClip>("Audio/Attack");
+        this.creatureAudio.Play();
 
         this.currentAttack = StartCoroutine(this.AttackCoroutine());
         this.TriggerAttack();
@@ -268,8 +286,19 @@ public class Creature : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(Creature attackingCreature, int damage)
+    public virtual void TakeDamage(Creature attackingCreature, int damage, bool isDOTS)
     {
+        if (isDOTS == true)
+        {
+            this.damageAudio.clip = Resources.Load<AudioClip>("Audio/DOT");
+            this.damageAudio.Play();
+        }
+        else
+        {
+            this.damageAudio.clip = Resources.Load<AudioClip>("Audio/Damage");
+            this.damageAudio.Play();
+        }
+
         this.currentHitPoints -= damage;
         this.creatureAnimator.SetTrigger("DamagedTrigger");
 
@@ -278,7 +307,9 @@ public class Creature : MonoBehaviour
 
     protected virtual void Die()
     {
+        this.creatureAudio.clip = Resources.Load<AudioClip>("Audio/Die");
+        this.creatureAudio.Play();
+
         Destroy(this.gameObject);
-        //Play sound effect here?
     }
 }

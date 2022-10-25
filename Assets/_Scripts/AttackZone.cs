@@ -64,7 +64,7 @@ public class AttackZone : MonoBehaviour
         if (hitCreature != null)
         {
             int damageDealt = this.CalculateDamage();
-            hitCreature.TakeDamage(this.owningCreature, damageDealt);
+            hitCreature.TakeDamage(this.owningCreature, damageDealt, false);
             this.owningCreature.TriggerDamageEnemy(hitCreature, this.owningCreature.equippedWeapon.attackPower);
         }
     }

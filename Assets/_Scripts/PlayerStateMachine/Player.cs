@@ -15,7 +15,7 @@ public class Player : Creature
     public KeyCode upKey = KeyCode.W;
     public KeyCode downKey = KeyCode.S;
     public KeyCode attackKey = KeyCode.Space;
-    public KeyCode interactKey = KeyCode.E;  
+    public KeyCode interactKey = KeyCode.E;
 
     protected override void Start()
     {

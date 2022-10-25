@@ -97,9 +97,9 @@ public class Enemy : Creature
     }    
 
     
-    public override void TakeDamage(Creature attackingCreature, int damage)
+    public override void TakeDamage(Creature attackingCreature, int damage, bool isDOTS)
     {
-        base.TakeDamage(attackingCreature, damage);
+        base.TakeDamage(attackingCreature, damage, isDOTS);
         StartCoroutine(this.HaltMovement());
     }
 

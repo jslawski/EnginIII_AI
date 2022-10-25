@@ -8,7 +8,7 @@ public class OneOffDamage : StatusEffect
 
     public override void ApplyStatusEffect()
     {
-        this.ownerTarget.TakeDamage(this.ownerTarget, this.selfDamage);
+        this.ownerTarget.TakeDamage(this.ownerTarget, this.selfDamage, false);
 
         Destroy(this);
     }

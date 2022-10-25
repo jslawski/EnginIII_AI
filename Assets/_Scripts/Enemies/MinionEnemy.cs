@@ -153,6 +153,9 @@ public class MinionEnemy : Enemy
 
     public GameObject CreateWeapon()
     {
+        this.creatureAudio.clip = Resources.Load<AudioClip>("Audio/Steal");
+        this.creatureAudio.Play();
+
         return Instantiate(Resources.Load<GameObject>("Prefabs/GrabbableWeapon"), this.creatureRb.position, new Quaternion());
     }
 

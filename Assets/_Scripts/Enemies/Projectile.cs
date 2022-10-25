@@ -41,7 +41,7 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         StopAllCoroutines();
-        other.gameObject.GetComponent<Creature>().TakeDamage(this.owningCreature, this.attackPower);
+        other.gameObject.GetComponent<Creature>().TakeDamage(this.owningCreature, this.attackPower, false);
         Destroy(this.gameObject);
     }
 }

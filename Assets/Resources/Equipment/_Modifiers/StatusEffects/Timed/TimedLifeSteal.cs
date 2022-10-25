@@ -21,7 +21,7 @@ public class TimedLifeSteal : TimedStatusEffect
     {
         while (true)
         {
-            this.nonOwnerTarget.TakeDamage(this.ownerTarget, this.sapDamage);
+            this.nonOwnerTarget.TakeDamage(this.ownerTarget, this.sapDamage, true);
             this.ownerTarget.currentHitPoints += this.sapDamage;
             yield return new WaitForSeconds(this.delayBetweenSapInSeconds);
         }
