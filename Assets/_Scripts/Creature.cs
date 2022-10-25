@@ -142,6 +142,18 @@ public class Creature : MonoBehaviour
         this.equippedWeapon.Equip(this);
     }
 
+    public void LoseWeapon()
+    {
+        if (this.equippedWeapon == null || this.equippedWeapon == this.unarmedWeapon)
+        {
+            return;
+        }
+        
+        this.equippedWeapon.Unequip();
+        this.equippedWeapon = null;
+        this.Equip(this.unarmedWeapon);
+    }
+
     public void DropArmor()
     {
         if (this.equippedArmor == null || this.equippedArmor == this.nakedArmor)
@@ -251,7 +263,7 @@ public class Creature : MonoBehaviour
         }
     }
 
-    public void TakeDamage(Creature attackingCreature, int damage)
+    public virtual void TakeDamage(Creature attackingCreature, int damage)
     {
         this.currentHitPoints -= damage;
         this.creatureAnimator.SetTrigger("DamagedTrigger");

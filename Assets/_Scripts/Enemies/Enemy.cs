@@ -13,6 +13,9 @@ public class Enemy : Creature
     public float rotateSpeed = 3.0f;
 
     [HideInInspector]
+    public GrabbableWeapon carryingWeapon = null;
+
+    [HideInInspector]
     public float attackCooldown = 0.0f;
 
     [HideInInspector]
@@ -108,5 +111,27 @@ public class Enemy : Creature
         }
 
         this.enemyAttackCoroutine = null;
-    }    
+    }
+
+    public GameObject CreateWeapon()
+    {
+        return Instantiate(Resources.Load<GameObject>("Prefabs/GrabbableWeapon"), this.creatureRb.position, new Quaternion());
+    }
+
+    /*
+    public override void TakeDamage(Creature attackingCreature, int damage)
+    {
+        base.TakeDamage(attackingCreature, damage);
+        StartCoroutine(this.HaltMovement());
+    }
+
+    private IEnumerator HaltMovement()
+    {
+        this.creatureRb.constraints = RigidbodyConstraints.FreezeAll;
+
+        yield return new WaitForSeconds(0.5f);
+
+        this.creatureRb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+    }
+    */
 }

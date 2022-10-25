@@ -237,7 +237,7 @@ MonoBehaviour:
   totalHitPoints: 100
   currentHitPoints: 100
   attackZone: {fileID: 0}
-  moveSpeed: 8
+  moveSpeed: 6
   unarmedWeapon: {fileID: 0}
   nakedArmor: {fileID: 0}
   weaponPickupCandidate: {fileID: 0}
@@ -252,6 +252,7 @@ MonoBehaviour:
   secondsBetweenAttacks: 0.5
   currentBehaviorString: 
   rangedAttackDistance: 8
+  fleeDistance: 4
   carryingWeapon: {fileID: 0}
 --- !u!54 &2147599954919052253
 Rigidbody:

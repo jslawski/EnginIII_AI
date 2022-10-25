@@ -7,19 +7,18 @@ public class MinionEnemy : Enemy
 {    
     private Type CanSeePlayerBehavior = typeof(ChaseBehavior);
     private Type CannotSeePlayerBehavior = typeof(IdleBehavior);
-    private Type CanStealWeaponBehavior = typeof(AttackBehavior);
+    private Type CanStealWeaponBehavior = typeof(MinionStealWeaponBehavior);
     private Type CanAttackPlayerBehavior = typeof(AttackBehavior);
-    private Type IsHoldingWeaponBehavior = typeof(AttackBehavior);
+    private Type IsHoldingWeaponBehavior = typeof(MinionDeliverWeaponBehavior);
+    private Type PlayerTooCloseBehavior = typeof(AttackBehavior);  //Change this to MinionFleeBehavior if you want the minion to flee
 
     [Header("Minion Attributes")]
     [SerializeField]
     private float rangedAttackDistance = 8.0f;
-    private float fleeDistance = 5.0f;
+    [SerializeField]
+    private float fleeDistance = 4.0f;
 
     private BossEnemy boss;
-
-    [HideInInspector]
-    public GrabbableWeapon carryingWeapon = null;
 
     private GameObject projectilePrefab;
 
@@ -54,7 +53,14 @@ public class MinionEnemy : Enemy
                 }
                 else if (this.IsInRangeOfPlayer() == true)
                 {
-                    this.AttemptBehaviorChange(this.CanAttackPlayerBehavior);
+                    if (this.ShouldFlee())
+                    {
+                        this.AttemptBehaviorChange(this.PlayerTooCloseBehavior);
+                    }
+                    else
+                    {
+                        this.AttemptBehaviorChange(this.CanAttackPlayerBehavior);
+                    }
                 }
                 else
                 {
@@ -83,6 +89,9 @@ public class MinionEnemy : Enemy
 
     private bool ValuableWeaponDetected()
     {
+        Debug.LogError("Weapon Utilities:   Boss: " + this.boss.equippedWeapon.GetUtilityTotalScore() +
+            "   Player: " + this.playerTarget.equippedWeapon.GetUtilityTotalScore());
+
         if (this.playerTarget.equippedWeapon == this.unarmedWeapon)
         {
             return false;
@@ -98,6 +107,12 @@ public class MinionEnemy : Enemy
         float distanceToPlayer = Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position);
 
         return (distanceToPlayer <= distanceToWeaponMidpoint);
+    }
+    
+    private bool ShouldFlee()
+    {
+        float distanceToPlayer = Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position);
+        return (distanceToPlayer <= this.fleeDistance);        
     }
 
     protected override bool IsInRangeOfPlayer()

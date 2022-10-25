@@ -5,6 +5,8 @@ using TMPro;
 
 public class GrabbableWeapon : MonoBehaviour
 {
+    public bool grabbable = true;
+
     public Weapon weaponDetails;
     private MeshRenderer objectMesh;
 
@@ -79,6 +81,11 @@ public class GrabbableWeapon : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (this.grabbable == false)
+        {
+            return;
+        }
+
         this.infoCanvas.SetActive(true);
 
         other.gameObject.GetComponent<Creature>().weaponPickupCandidate = this;

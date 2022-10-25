@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Boss Knife
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  rarity: 1
+  rarity: 0
   equipmentType: 0
   enchantmentSlots: []
   attackPower: 10
   critChance: 0.3
-  attackZoneDimensions: {x: 2, y: 4}
+  attackZoneDimensions: {x: 1.5, y: 2}
