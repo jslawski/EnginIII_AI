@@ -153,7 +153,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3951703670281282860
 RectTransform:
   m_ObjectHideFlags: 0
@@ -284,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 12be9809900645c4897d6742e27dcd92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabbable: 1
   weaponDetails: {fileID: 0}
   infoCanvas: {fileID: 2430793308084334094}
   weaponName: {fileID: 8166491314014737965}

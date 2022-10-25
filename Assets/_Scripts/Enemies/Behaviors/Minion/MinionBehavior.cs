@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionEnemyBehavior : EnemyBehavior
+public class MinionBehavior : EnemyBehavior
 {
-    protected MinionEnemy minionEnemy;
+    protected MinionEnemy minion;
 
     public void Setup(MinionEnemy thisEnemy)
     {
-        this.minionEnemy = thisEnemy;
+        this.minion = thisEnemy;
         this.enemy = thisEnemy;
     }
 }

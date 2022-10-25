@@ -3,25 +3,19 @@ using System.Collections;
 using UnityEngine;
 
 public class Enemy : Creature
-{
-    
+{    
     [HideInInspector]
     public Creature playerTarget;
 
     [Header("Enemy Attributes")]
     public float visionDistance = 15f;
-    public float rotateSpeed = 3.0f;
-
-    [HideInInspector]
-    public GrabbableWeapon carryingWeapon = null;
+    public float rotateSpeed = 3.0f;    
 
     [HideInInspector]
     public float attackCooldown = 0.0f;
 
     [HideInInspector]
     public Coroutine enemyAttackCoroutine = null;
-
-    protected EnemyBehavior currentBehavior;
 
     public float attackAngle = 30.0f;
     public float secondsBetweenAttacks = 2.0f;
@@ -32,9 +26,7 @@ public class Enemy : Creature
     {
         base.Start();
 
-        this.playerTarget = GameObject.Find("Player").GetComponent<Creature>();
-        this.currentBehavior = new IdleBehavior();
-        this.currentBehavior.Setup(this);
+        this.playerTarget = GameObject.Find("Player").GetComponent<Creature>();        
     }
 
     private void FixedUpdate()
@@ -45,23 +37,14 @@ public class Enemy : Creature
             return;
         }
 
-        this.UpdateBehavior();
-        this.currentBehavior.ExecuteBehavior();        
+        this.UpdateBehavior();                
     }
 
     protected virtual void UpdateBehavior() { }
 
-    protected void AttemptBehaviorChange(Type newBehaviorType)
-    {
-        if (this.currentBehavior.GetType() != newBehaviorType)
-        {
-            this.currentBehavior = Activator.CreateInstance(newBehaviorType, this) as EnemyBehavior;
-            this.currentBehavior.Setup(this);
-            this.currentBehaviorString = this.currentBehavior.GetType().ToString();
-        }
-    }
+    protected virtual void AttemptBehaviorChange(Type newBehaviorType) { }
 
-    protected bool CanSeePlayer()
+        protected bool CanSeePlayer()
     {
         return (Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position) <= this.visionDistance);
     }
@@ -111,12 +94,7 @@ public class Enemy : Creature
         }
 
         this.enemyAttackCoroutine = null;
-    }
-
-    public GameObject CreateWeapon()
-    {
-        return Instantiate(Resources.Load<GameObject>("Prefabs/GrabbableWeapon"), this.creatureRb.position, new Quaternion());
-    }
+    }    
 
     /*
     public override void TakeDamage(Creature attackingCreature, int damage)

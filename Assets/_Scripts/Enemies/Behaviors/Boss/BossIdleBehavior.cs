@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BossGrabWeaponBehavior : BossBehavior
-{    
+public class BossIdleBehavior : BossBehavior
+{
     public override void ExecuteBehavior()
     {
-        this.enemy.PickUpWeapon();
+        //Enemies currently don't do anything when idle
     }
 }

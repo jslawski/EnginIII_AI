@@ -5,12 +5,12 @@ using UnityEngine;
 
 public class MinionEnemy : Enemy
 {    
-    private Type CanSeePlayerBehavior = typeof(ChaseBehavior);
-    private Type CannotSeePlayerBehavior = typeof(IdleBehavior);
+    private Type CanSeePlayerBehavior = typeof(MinionChaseBehavior);
+    private Type CannotSeePlayerBehavior = typeof(MinionIdleBehavior);
     private Type CanStealWeaponBehavior = typeof(MinionStealWeaponBehavior);
-    private Type CanAttackPlayerBehavior = typeof(AttackBehavior);
+    private Type CanAttackPlayerBehavior = typeof(MinionAttackBehavior);
     private Type IsHoldingWeaponBehavior = typeof(MinionDeliverWeaponBehavior);
-    private Type PlayerTooCloseBehavior = typeof(AttackBehavior);  //Change this to MinionFleeBehavior if you want the minion to flee
+    private Type PlayerTooCloseBehavior = typeof(MinionAttackBehavior);  //Change this to MinionFleeBehavior if you want the minion to flee
 
     [Header("Minion Attributes")]
     [SerializeField]
@@ -18,9 +18,14 @@ public class MinionEnemy : Enemy
     [SerializeField]
     private float fleeDistance = 4.0f;
 
+    [HideInInspector]
+    public GrabbableWeapon carryingWeapon = null;
+
     private BossEnemy boss;
 
     private GameObject projectilePrefab;
+
+    private MinionBehavior currentBehavior;
 
     protected override void Start()
     {
@@ -28,6 +33,19 @@ public class MinionEnemy : Enemy
 
         this.boss = GameObject.Find("BossEnemy").GetComponent<BossEnemy>();
         this.projectilePrefab = Resources.Load<GameObject>("Prefabs/Projectile");
+
+        this.currentBehavior = new MinionIdleBehavior();
+        this.currentBehavior.Setup(this);
+    }
+
+    protected override void AttemptBehaviorChange(Type newBehaviorType)
+    {
+        if (this.currentBehavior.GetType() != newBehaviorType)
+        {
+            this.currentBehavior = Activator.CreateInstance(newBehaviorType) as MinionBehavior;
+            this.currentBehavior.Setup(this);
+            this.currentBehaviorString = this.currentBehavior.GetType().ToString();
+        }
     }
 
     protected override void UpdateBehavior()
@@ -72,6 +90,8 @@ public class MinionEnemy : Enemy
                 this.AttemptBehaviorChange(this.CannotSeePlayerBehavior);
             }
         }
+
+        this.currentBehavior.ExecuteBehavior();
     }
 
     public override void Attack()
@@ -120,5 +140,10 @@ public class MinionEnemy : Enemy
         float distanceToPlayer = Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position);
 
         return (distanceToPlayer <= this.rangedAttackDistance);
-    }    
+    }
+
+    public GameObject CreateWeapon()
+    {
+        return Instantiate(Resources.Load<GameObject>("Prefabs/GrabbableWeapon"), this.creatureRb.position, new Quaternion());
+    }
 }

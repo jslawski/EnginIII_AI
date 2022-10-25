@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MinionStealWeaponBehavior : MinionEnemyBehavior
+public class MinionStealWeaponBehavior : MinionBehavior
 {    
     public override void ExecuteBehavior()
     {
-        GameObject weaponInstance = this.enemy.CreateWeapon();
-        this.enemy.carryingWeapon = weaponInstance.GetComponent<GrabbableWeapon>();
-        this.enemy.carryingWeapon.Setup(this.enemy.playerTarget.equippedWeapon);
-        this.enemy.carryingWeapon.grabbable = false;
+        GameObject weaponInstance = this.minion.CreateWeapon();
+        this.minion.carryingWeapon = weaponInstance.GetComponent<GrabbableWeapon>();
+        this.minion.carryingWeapon.Setup(this.enemy.playerTarget.equippedWeapon);
+        this.minion.carryingWeapon.grabbable = false;
         
         this.enemy.playerTarget.LoseWeapon();        
     }
