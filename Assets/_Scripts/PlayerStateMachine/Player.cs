@@ -28,16 +28,7 @@ public class Player : Creature
     {
         base.Update();
 
-        this.currentState.UpdateState();
-
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            SceneManager.LoadScene(0);
-        }
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
+        this.currentState.UpdateState();        
     }
 
     private void FixedUpdate()

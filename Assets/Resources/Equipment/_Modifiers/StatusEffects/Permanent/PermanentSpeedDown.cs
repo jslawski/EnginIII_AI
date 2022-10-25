@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PermanentSpeedDown : StatusEffect
 {
-    private float speedModifier = 5.0f;
+    private float speedModifier = 2.0f;
 
     public override void ApplyStatusEffect()
     {

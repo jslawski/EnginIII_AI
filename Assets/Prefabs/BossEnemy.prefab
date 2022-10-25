@@ -237,7 +237,7 @@ MonoBehaviour:
   totalHitPoints: 100
   currentHitPoints: 100
   attackZone: {fileID: 2480019744266275670}
-  moveSpeed: 2
+  moveSpeed: 3
   unarmedWeapon: {fileID: 0}
   nakedArmor: {fileID: 0}
   weaponPickupCandidate: {fileID: 0}
