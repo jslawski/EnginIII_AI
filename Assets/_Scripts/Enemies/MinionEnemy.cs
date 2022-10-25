@@ -7,6 +7,7 @@ public class MinionEnemy : Enemy
 {    
     private Type CanSeePlayerBehavior = typeof(MinionChaseBehavior);
     private Type CannotSeePlayerBehavior = typeof(MinionIdleBehavior);
+    private Type CanSeeWeaponBehavior = typeof(MinionApproachBehavior);
     private Type CanStealWeaponBehavior = typeof(MinionStealWeaponBehavior);
     private Type CanAttackPlayerBehavior = typeof(MinionAttackBehavior);
     private Type IsHoldingWeaponBehavior = typeof(MinionDeliverWeaponBehavior);
@@ -14,15 +15,21 @@ public class MinionEnemy : Enemy
 
     [Header("Minion Attributes")]
     [SerializeField]
-    private float rangedAttackDistance = 8.0f;
+    private float rangedAttackDistance = 0.1f;
     [SerializeField]
-    private float fleeDistance = 4.0f;
+    private float fleeDistance = 0.0f;
 
     [HideInInspector]
     public GrabbableWeapon carryingWeapon = null;
 
     [HideInInspector]
     public BossEnemy boss;
+
+    [HideInInspector]
+    public Vector3 targetDestination;
+
+    [SerializeField]
+    private float flankDistance = 1.0f;
 
     private GameObject projectilePrefab;
 
@@ -51,7 +58,7 @@ public class MinionEnemy : Enemy
 
     protected override void UpdateBehavior()
     {
-        if (this.carryingWeapon != null)
+        if (this.carryingWeapon != null && this.boss != null)
         {
             this.AttemptBehaviorChange(this.IsHoldingWeaponBehavior);
         }
@@ -67,7 +74,7 @@ public class MinionEnemy : Enemy
                     }
                     else
                     {
-                        this.AttemptBehaviorChange(this.CanSeePlayerBehavior);
+                        this.AttemptBehaviorChange(this.CanSeeWeaponBehavior);
                     }
                 }
                 else if (this.IsInRangeOfPlayer() == true)
@@ -110,8 +117,8 @@ public class MinionEnemy : Enemy
 
     private bool ValuableWeaponDetected()
     {
-        Debug.LogError("Weapon Utilities:   Boss: " + this.boss.equippedWeapon.GetUtilityTotalScore() +
-            "   Player: " + this.playerTarget.equippedWeapon.GetUtilityTotalScore());
+        //Debug.LogError("Weapon Utilities:   Boss: " + this.boss.equippedWeapon.GetUtilityTotalScore() +
+         //   "   Player: " + this.playerTarget.equippedWeapon.GetUtilityTotalScore());
 
         if (this.playerTarget.equippedWeapon == this.unarmedWeapon)
         {
@@ -138,13 +145,45 @@ public class MinionEnemy : Enemy
 
     protected override bool IsInRangeOfPlayer()
     {
-        float distanceToPlayer = Vector3.Distance(this.creatureRb.position, this.playerTarget.creatureRb.position);
+        this.UpdateTargetDestination();
+        float distanceToTarget = Vector3.Distance(this.targetDestination, this.creatureRb.position);
 
-        return (distanceToPlayer <= this.rangedAttackDistance);
+        return (distanceToTarget <= this.rangedAttackDistance);
     }
 
     public GameObject CreateWeapon()
     {
         return Instantiate(Resources.Load<GameObject>("Prefabs/GrabbableWeapon"), this.creatureRb.position, new Quaternion());
+    }
+
+    protected override void Die()
+    {
+        if (this.carryingWeapon != null)
+        {
+            this.carryingWeapon.grabbable = true;
+        }
+
+        base.Die();
+    }
+
+    public void UpdateTargetDestination()
+    {
+        Vector3 targetDestinationLeft = this.playerTarget.creatureRb.position +
+            (this.playerTarget.transform.up * this.flankDistance);
+
+        Vector3 targetDestinationRight = this.playerTarget.creatureRb.position -
+            (this.playerTarget.transform.up * this.flankDistance);
+
+        Vector3 targetDestination = Vector3.zero;
+
+        if (Vector3.Distance(this.creatureRb.position, targetDestinationLeft) <
+            Vector3.Distance(this.creatureRb.position, targetDestinationRight))
+        {
+            this.targetDestination = targetDestinationLeft;
+        }
+        else
+        {
+            this.targetDestination = targetDestinationRight;
+        }
     }
 }

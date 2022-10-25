@@ -505,8 +505,24 @@ PrefabInstance:
       value: MinionEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 8686490079406252450, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686490079406252450, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
+      propertyPath: fleeDistance
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686490079406252450, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
+      propertyPath: flankDistance
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686490079406252450, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
       propertyPath: totalHitPoints
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8686490079406252450, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
+      propertyPath: rangedAttackDistance
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}

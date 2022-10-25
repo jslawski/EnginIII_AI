@@ -276,7 +276,7 @@ public class Creature : MonoBehaviour
         this.TriggerDamageSelf(attackingCreature, damage);        
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         Destroy(this.gameObject);
         //Play sound effect here?
