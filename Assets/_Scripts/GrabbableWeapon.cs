@@ -18,6 +18,8 @@ public class GrabbableWeapon : MonoBehaviour
     private TextMeshProUGUI weaponAtk;
     [SerializeField]
     private TextMeshProUGUI weaponSkills;
+    [SerializeField]
+    private AudioSource chestOpenSound;
 
     public void Start()
     {
@@ -25,6 +27,12 @@ public class GrabbableWeapon : MonoBehaviour
         {
             this.Setup(this.weaponDetails);
         }
+    }
+
+    public void PlayChestOpenSound()
+    {
+        this.chestOpenSound.pitch = Random.Range(0.8f, 1.2f);
+        this.chestOpenSound.Play();
     }
 
     // Start is called before the first frame update

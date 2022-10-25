@@ -184,6 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grabbableWeaponPrefab: {fileID: 4509153712968564344, guid: 7986e1729f4089946813c4d779b19fc3, type: 3}
   infoCanvas: {fileID: 5356335935889399974}
+  openChestSound: {fileID: 0}
 --- !u!65 &990745765462338814
 BoxCollider:
   m_ObjectHideFlags: 0

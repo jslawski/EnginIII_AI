@@ -7,7 +7,6 @@ using UnityEngine;
 /// </summary>
 public class LootChest : MonoBehaviour
 {
-
     private const string WeaponsResourcePath = "Equipment/Weapons/";
     private const string CommonWeaponsResourcePath = WeaponsResourcePath + "0_Common";
     private const string UncommonWeaponsResourcePath = WeaponsResourcePath + "1_Uncommon";
@@ -81,6 +80,7 @@ public class LootChest : MonoBehaviour
         GameObject instance = GameObject.Instantiate(grabbableWeaponPrefab, this.gameObject.transform.position, new Quaternion()) as GameObject;
         GrabbableWeapon grabbableWeaponComponent = instance.GetComponent<GrabbableWeapon>();
         grabbableWeaponComponent.weaponDetails = newWeapon;
+        grabbableWeaponComponent.PlayChestOpenSound();
     }
 
     private void OnTriggerEnter(Collider other)
