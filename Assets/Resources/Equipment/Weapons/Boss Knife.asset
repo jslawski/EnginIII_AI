@@ -16,6 +16,6 @@ MonoBehaviour:
   rarity: 0
   equipmentType: 0
   enchantmentSlots: []
-  attackPower: 10
+  attackPower: 5
   critChance: 0.3
-  attackZoneDimensions: {x: 1.5, y: 2}
+  attackZoneDimensions: {x: 1, y: 3}

@@ -132,7 +132,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 83057052475298700, guid: d81997c8d7ab908449c18690d4b24fb8, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 83057052475298700, guid: d81997c8d7ab908449c18690d4b24fb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -283,7 +283,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 83057052475298700, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 83057052475298700, guid: c3147e12dac2ae14ab5709d016523a30, type: 3}
       propertyPath: m_LocalPosition.x
@@ -372,7 +372,7 @@ PrefabInstance:
     - target: {fileID: 3739534661951587638, guid: 7986e1729f4089946813c4d779b19fc3, type: 3}
       propertyPath: weaponDetails
       value: 
-      objectReference: {fileID: 11400000, guid: d0e69ed772a7ac24e97c21ff297876db, type: 2}
+      objectReference: {fileID: 11400000, guid: 5031a3e13038f174c9b339c9257e8f79, type: 2}
     - target: {fileID: 4509153712968564344, guid: 7986e1729f4089946813c4d779b19fc3, type: 3}
       propertyPath: m_Name
       value: GrabbableWeapon
@@ -642,7 +642,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2890657395172797762, guid: 47da46762ac7f20439f397507319de7b, type: 3}
       propertyPath: m_LocalPosition.x

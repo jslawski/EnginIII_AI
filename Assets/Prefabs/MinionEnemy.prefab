@@ -249,11 +249,12 @@ MonoBehaviour:
   rotateSpeed: 5
   attackCooldown: 0
   attackAngle: 30
-  secondsBetweenAttacks: 0.5
+  secondsBetweenAttacks: 1
   currentBehaviorString: 
   rangedAttackDistance: 8
   fleeDistance: 4
   carryingWeapon: {fileID: 0}
+  boss: {fileID: 0}
 --- !u!54 &2147599954919052253
 Rigidbody:
   m_ObjectHideFlags: 0

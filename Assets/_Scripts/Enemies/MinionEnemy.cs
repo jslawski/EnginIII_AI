@@ -21,7 +21,8 @@ public class MinionEnemy : Enemy
     [HideInInspector]
     public GrabbableWeapon carryingWeapon = null;
 
-    private BossEnemy boss;
+    [HideInInspector]
+    public BossEnemy boss;
 
     private GameObject projectilePrefab;
 
