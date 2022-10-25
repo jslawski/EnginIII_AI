@@ -6,7 +6,7 @@ public class MoveState : PlayerState
 {
     Vector3 moveDirection = Vector3.zero;
 
-    public override void Enter(PlayerController controller)
+    public override void Enter(Player controller)
     {
         base.Enter(controller);
     }
@@ -36,13 +36,13 @@ public class MoveState : PlayerState
     {
         base.FixedUpdateState();
 
-        float finalMoveSpeed = this.controller.creatureReference.moveSpeed * Time.fixedDeltaTime;
-        Vector3 targetDestination = this.controller.playerRb.position + (this.moveDirection * finalMoveSpeed);
+        float finalMoveSpeed = this.controller.moveSpeed * Time.fixedDeltaTime;
+        Vector3 targetDestination = this.controller.creatureRb.position + (this.moveDirection * finalMoveSpeed);
 
         float targetZRotation = Mathf.Atan2(this.moveDirection.y, this.moveDirection.x) * Mathf.Rad2Deg;
 
-        this.controller.playerRb.MovePosition(targetDestination);
-        this.controller.playerRb.MoveRotation(Quaternion.Euler(new Vector3(0.0f, 0.0f, targetZRotation)));
+        this.controller.creatureRb.MovePosition(targetDestination);
+        this.controller.creatureRb.MoveRotation(Quaternion.Euler(new Vector3(0.0f, 0.0f, targetZRotation)));
     }
     
     private bool StoppedHoldingMoveKeys()

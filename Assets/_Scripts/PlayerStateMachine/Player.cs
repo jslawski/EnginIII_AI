@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerController : MonoBehaviour
+public class Player : Creature
 {    
     [SerializeField]
     private string stateName;
@@ -15,24 +15,19 @@ public class PlayerController : MonoBehaviour
     public KeyCode upKey = KeyCode.W;
     public KeyCode downKey = KeyCode.S;
     public KeyCode attackKey = KeyCode.Space;
-    public KeyCode interactKey = KeyCode.E;
+    public KeyCode interactKey = KeyCode.E;  
 
-    [HideInInspector]
-    public Rigidbody playerRb;
-
-    [HideInInspector]
-    public Creature creatureReference;    
-
-    private void Start()
+    protected override void Start()
     {
-        this.playerRb = GetComponent<Rigidbody>();
-        this.creatureReference = GetComponent<Creature>();
+        base.Start();
 
         this.ChangeState(new IdleState());
     }
     
-    private void Update()
+    protected override void Update()
     {
+        base.Update();
+
         this.currentState.UpdateState();
 
         if (Input.GetKeyUp(KeyCode.R))

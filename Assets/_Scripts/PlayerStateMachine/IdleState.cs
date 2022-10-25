@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class IdleState : PlayerState
 {
-    public override void Enter(PlayerController controller)
+    public override void Enter(Player controller)
     {
         base.Enter(controller);
     }

@@ -31,8 +31,8 @@ public class Enemy : Creature
 
     private void FixedUpdate()
     {
-        //Enemy should be motionless while it is attacking
-        if (this.currentAttack != null)
+        //Enemy should be motionless while it is attacking or the player is dead
+        if (this.currentAttack != null || this.playerTarget == null)
         {
             return;
         }
@@ -96,7 +96,7 @@ public class Enemy : Creature
         this.enemyAttackCoroutine = null;
     }    
 
-    /*
+    
     public override void TakeDamage(Creature attackingCreature, int damage)
     {
         base.TakeDamage(attackingCreature, damage);
@@ -107,9 +107,9 @@ public class Enemy : Creature
     {
         this.creatureRb.constraints = RigidbodyConstraints.FreezeAll;
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
 
         this.creatureRb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
     }
-    */
+    
 }

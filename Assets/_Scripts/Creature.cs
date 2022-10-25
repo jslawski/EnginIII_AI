@@ -90,7 +90,7 @@ public class Creature : MonoBehaviour
         }
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         this.hpText.text = ("HP: " + this.currentHitPoints);
 
@@ -101,6 +101,11 @@ public class Creature : MonoBehaviour
 
         this.hpText.transform.parent.transform.parent.position = adjustedPosition;
         this.hpText.transform.parent.transform.parent.rotation = Quaternion.identity;
+
+        if (this.currentHitPoints <= 0)
+        {
+            this.Die();
+        }
     }
 
     public void Interact()
@@ -269,5 +274,11 @@ public class Creature : MonoBehaviour
         this.creatureAnimator.SetTrigger("DamagedTrigger");
 
         this.TriggerDamageSelf(attackingCreature, damage);        
+    }
+
+    private void Die()
+    {
+        Destroy(this.gameObject);
+        //Play sound effect here?
     }
 }

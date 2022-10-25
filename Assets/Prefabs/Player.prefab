@@ -205,8 +205,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2890657395172797762}
-  - component: {fileID: 6044717014275557405}
-  - component: {fileID: 1644294299}
+  - component: {fileID: 2933769681552271882}
   - component: {fileID: 2890657395172797761}
   - component: {fileID: 2890657395172797760}
   - component: {fileID: 6401538956567892345}
@@ -237,31 +236,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6044717014275557405
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2890657395172797774}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 82f68914f78b42f46a35b5d1cf357970, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startingWeapon: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
-  startingArmor: {fileID: 11400000, guid: 0af928a3227d6b745b0bafc58fa8e44b, type: 2}
-  equippedWeapon: {fileID: 0}
-  equippedArmor: {fileID: 0}
-  totalHitPoints: 100
-  currentHitPoints: 100
-  attackZone: {fileID: 0}
-  moveSpeed: 5
-  weaponPickupCandidate: {fileID: 0}
-  lootChestCandidate: {fileID: 0}
-  creatureRb: {fileID: 0}
-  attackDuration: 0.5
---- !u!114 &1644294299
+--- !u!114 &2933769681552271882
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -273,6 +248,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c00b9938e64f22c41be24854ccb33f79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingWeapon: {fileID: 11400000, guid: 801adc3f26eefcf4ebab6c77feb733dc, type: 2}
+  startingArmor: {fileID: 11400000, guid: b3a384b4a11cad6428e3a5eb43955050, type: 2}
+  equippedWeapon: {fileID: 0}
+  equippedArmor: {fileID: 0}
+  totalHitPoints: 100
+  currentHitPoints: 100
+  attackZone: {fileID: 5585433083158896671}
+  moveSpeed: 7
+  unarmedWeapon: {fileID: 0}
+  nakedArmor: {fileID: 0}
+  weaponPickupCandidate: {fileID: 0}
+  lootChestCandidate: {fileID: 0}
+  creatureRb: {fileID: 0}
+  attackDuration: 0.5
   stateName: 
   leftKey: 97
   rightKey: 100
@@ -280,8 +269,6 @@ MonoBehaviour:
   downKey: 115
   attackKey: 32
   interactKey: 101
-  playerRb: {fileID: 0}
-  creatureReference: {fileID: 0}
 --- !u!33 &2890657395172797761
 MeshFilter:
   m_ObjectHideFlags: 0

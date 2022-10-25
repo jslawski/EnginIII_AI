@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerState
 {
-    protected PlayerController controller;
+    protected Player controller;
 
-    public virtual void Enter(PlayerController controller)
+    public virtual void Enter(Player controller)
     {
         this.controller = controller;
     }
@@ -16,7 +16,7 @@ public class PlayerState
     {
         if (Input.GetKeyDown(this.controller.interactKey))
         {
-            this.controller.creatureReference.Interact();
+            this.controller.Interact();
         }
     }
 

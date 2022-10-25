@@ -234,8 +234,8 @@ MonoBehaviour:
   startingArmor: {fileID: 11400000, guid: b3a384b4a11cad6428e3a5eb43955050, type: 2}
   equippedWeapon: {fileID: 0}
   equippedArmor: {fileID: 0}
-  totalHitPoints: 100
-  currentHitPoints: 100
+  totalHitPoints: 50
+  currentHitPoints: 50
   attackZone: {fileID: 0}
   moveSpeed: 6
   unarmedWeapon: {fileID: 0}
